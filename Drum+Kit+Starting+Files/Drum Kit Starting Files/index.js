@@ -1,3 +1,5 @@
+//this make sound when pressed
+
 function soundByKey(letterPressed){
     switch (letterPressed) {
         case 'w':
@@ -41,6 +43,15 @@ function soundByKey(letterPressed){
     }
 }
 
+//this add an animation when pressed
+function buttonAnimation(currentKey) {
+    var activeButton = document.querySelector("." + currentKey);
+    activeButton.classList.add("pressed");
+    setTimeout(function(){
+        activeButton.classList.remove("pressed");
+    }, 1500)//3000 ms = 3 sec
+}
+
 var drumButtons = document.querySelectorAll(".drum");
 
 for (let index = 0; index < drumButtons.length; index++) {
@@ -48,10 +59,13 @@ for (let index = 0; index < drumButtons.length; index++) {
     drumButtons[index].addEventListener("click", function (){
         var buttonInnerHTML = this.innerHTML;
         soundByKey(buttonInnerHTML);
+        buttonAnimation(buttonInnerHTML);
     });
 }
 document.addEventListener("keydown", function (event) {
     soundByKey(event.key);
+    buttonAnimation(event.key);
+
 });
 
 
