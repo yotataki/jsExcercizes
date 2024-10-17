@@ -1,7 +1,12 @@
 import express from "express";
+import morgan from "morgan";
 
 const app = express();
 const port = 3000;
+function logger(req, res, next) {
+  console.log(`Request: ${req}`);
+  next();
+}
 
 app.use(logger);
 
